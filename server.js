@@ -209,7 +209,8 @@ client.connect()
     // })
 
 
-    app.listen(3001);
+    var port_number = pocess.env.PORT | 3000;
+    app.listen(port_number);
     console.log('Server is listening on port 3001')
 
 }).catch(error => console.log(error))
