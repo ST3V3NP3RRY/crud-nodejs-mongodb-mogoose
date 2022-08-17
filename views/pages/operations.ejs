@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class='container'>
+
+    <header>
+      <%- include('../partials/header'); %>
+    </header>
+
+
+    <main>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="div_main">
+            <h2 class='myh2'>Welcome To ITPT</h2>
+            
+            <div class="card">
+              <div class="card-header">
+                Update by name
+              </div>
+              <div class="card-body">
+                <label for="">First Name</label>
+                  <input type="text" class="form-control" id="id_firstname_updt" name='first_name' placeholder="Enter First Name">
+                  <button type="button" class="btn btn-primary" name="button" id="btn_search">Search</button>
+              </div>
+              <div id="id_div_empty_resp">
+                <div class="alert alert-success" role="alert">
+                  No Match found
+              </div>
+              </div>
+              
+              <% if(message_update == 'success') {%>
+                <div class="alert alert-success" role="alert">
+                  Data Updated Successfully.
+                  <script type="text/javascript">
+                    setTimeout(function(){
+                      window.location.href = '/'
+                    }, 3000);
+                  </script>
+                </div>
+                <!-- <script>alert('Data Inserted Successfully.')</script> -->
+              <% } %>
+
+              <% if(message_update == 'DataMatched_NothingtoModify') {%>
+                <div class="alert alert-success" role="alert">
+                  Data Matched. It's already updated.
+                  <script type="text/javascript">
+                    setTimeout(function(){
+                      window.location.href = '/api/update-delete'
+                    }, 3000);
+                  </script>
+                </div>
+                <!-- <script>alert('Data Inserted Successfully.')</script> -->
+              <% } %>
+
+              <% if(message_update == 'DataNotMatched_NothingToModify') {%>
+                <div class="alert alert-info" role="alert">
+                  Data Not Found.
+                  <script type="text/javascript">
+                    setTimeout(function(){
+                      window.location.href = '/api/update-delete'
+                    }, 3000);
+                  </script>
+                </div>
+                <!-- <script>alert('Data Inserted Successfully.')</script> -->
+              <% } %>
+
+              <% if(message_update == 'error') {%>
+                <div class="alert alert-danger" role="alert">
+                  Something went wrong. Try again
+                  <script type="text/javascript">
+                    setTimeout(function(){
+                      window.location.href = '/api/update-delete'
+                    }, 3000);
+                  </script>
+                </div>
+                <!-- <script>alert('Data Inserted Successfully.')</script> -->
+              <% } %>
+              
+              <div class="update" id="div_update">
+
+                
+                <form method="POST" action="/update">
+                  <div class="form-group">
+                    <label for="">First Name</label>
+                    <input type="text" class="form-control" id="id_firstname" name='first_name' readonly>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input type="text" class="form-control" id="id_lastname" name='last_name'>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Date of Birth</label>
+                    <input type="date" class="form-control" id="id_dob" name='birth_date'>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Email ID </label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name='emailid' aria-describedby="emailHelp">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">City </label>
+                    <input type="text" class="form-control" id="id_city" name='city' placeholder="Enter City">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn_submit" id="btn-submit-update">Update</button>
+                </form>
+
+              </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
+
+                  
+            <div class="">
+              <h4 class='std_cls'>Delete Record: </h4>
+              <div class="">
+                  <% if(message_delete == 'success') {%>
+                    <div class="alert alert-danger" role="alert">
+                      Data Deleted Successfully.
+                      <script type="text/javascript">
+                        setTimeout(function(){
+                          window.location.href = '/'
+                        }, 3000);
+                      </script>
+                    </div>
+                    <!-- <script>alert('Data Inserted Successfully.')</script> -->
+                  <% } %>
+
+                  <% if(message_delete == 'no data') {%>
+                      <div class="alert alert-warning" role="alert">
+                        <p id='p_no_data'>No Data Found.</p>
+                        <script type="text/javascript">
+                          setTimeout(function(){
+                            window.location.href = '/api/update-delete'
+                          }, 3000);
+                        </script>
+                      </div>
+                  <% } %>
+
+                  <% if(message_delete == 'error') {%>
+                    <div class="alert alert-danger" role="alert">
+                        <p>Something went wrong! Try Again!</p>
+                      <script type="text/javascript">
+                        setTimeout(function(){
+                          window.location.href = '/api/update-delete'
+                        }, 3000);
+                      </script>
+                    </div>
+                  <% } %>
+              </div>
+              <form method="POST" action="\delete">
+                <div class="form-group">
+                  <label for="">First Name</label>
+                  <input type="text" class="form-control" id="id_firstname_del" name='first_name' placeholder="Enter First Name">
+                </div>
+                <button type="submit" id='btn_del' class="btn btn-primary btn_submit">Delete</button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="div_small">
+            <h3>Welcome to Sidebar!</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>
+  </body>
+  </html>
+  
+  <script type="text/javascript">
+    
+    
+    $('#div_update').hide();
+    $('#id_div_empty_resp').hide();
+
+    $('#btn_search').click(function(){
+      
+      $('#div_update').show();
+      var firstName = $('#id_firstname_updt').val();
+      $.ajax({
+        url: '/search-by-name',
+        type: "POST",
+        data: {fname: firstName},
+        success: function(data) {
+            console.log(data.length);
+            if(data.length ==0) {
+              $('#div_update').hide();
+              $('#id_div_empty_resp').show();
+              
+              setTimeout(function(){
+              window.location.href = '/api/update-delete'
+              }, 5000);
+                  
+            }
+            
+            $('#id_firstname').val(data.first_name)
+            $('#id_lastname').val(data.last_name)
+            $('#id_dob').val(data.birth_date)
+            $('#exampleInputEmail1').val(data.emailid)
+            $('#id_city').val(data.city)
+        
+        }
+     });
+  });
+
+  // var msg_updt = '<%= message_update %>';
+  // if(msg-updt == 'success') {
+  //     setTimeout(function(){
+  //     window.location.href = '/'
+  //     }, 3000);            
+  // } else {
+  //   setTimeout(function(){
+  //     window.location.href = '/api/update-delete'
+  //     }, 3000); 
+  // }
+  </script>
+

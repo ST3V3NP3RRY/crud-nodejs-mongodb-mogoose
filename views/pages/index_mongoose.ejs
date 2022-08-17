@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include("../partials/head"); %>
+  </head>
+  <body class='container'>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+        <h1>Mongoose DB</h1>
+        <button class="btn-primary" type="button" name="button" id="btn_insert_many">Insert bulk records</button>
+      
+        <% if(data.length == 0){ %>
+            <h3>No data available</h3>
+        <% } %>
+    
+        <% if(data.length >= 1){ %>
+            <h3>Student Info</h3>
+            
+            <table width="80%"> 
+              <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>date of Birth</th>
+                <th>email</th>
+                <th>City</th>
+              </tr>
+              
+              <%  for (var i = 0; i < data.length; i++) { %>
+              <tr>
+                <td> <%= data[i].firstname %></td>
+                <td> <%= data[i].lastname %></td> 
+                <td> <%= data[i].dob %></td>
+                <td> <%= data[i].email %></td> 
+                <td> <%= data[i].city %></td>
+              </tr>
+              <% } %>
+            </table>
+        <% } %>
+
+        <form method="POST" action="\">
+            <div class="form-group">
+              <label for="">First Name</label>
+              <input type="text" class="form-control" id="id_firstname" name='first_name' placeholder="Enter First Name">
+            </div>
+
+            <div class="form-group">
+              <label for="">Last Name</label>
+              <input type="text" class="form-control" id="id_lastname" name='last_name' placeholder="Enter Last Name">
+            </div>
+
+            <div class="form-group">
+              <label for="">Date of Birth</label>
+              <input type="date" class="form-control" id="id_dob" placeholder="" name='birth_date'>
+            </div>
+
+            <div class="form-group">
+              <label for="">Email ID </label>
+              <input type="email" class="form-control" id="exampleInputEmail1" name='emailid' aria-describedby="emailHelp" placeholder="Enter email">
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+
+            <div class="form-group">
+              <label for="">City </label>
+              <input type="text" class="form-control" id="id_city" name='city' placeholder="Enter City">
+            </div>
+
+            <button type="submit" class="btn btn-primary btn_submit">Submit</button>
+          </form>
+
+
+
+
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>
+
+  </body>
+</html>
+
+<script>
+  $('#btn_insert_many').click(function(){
+      
+      $.ajax({
+        url: '/insert-bulk-records',
+        type: "POST",
+        
+        success: function(data) {
+            console.log(data);
+        }
+     });
+  });
+</script>

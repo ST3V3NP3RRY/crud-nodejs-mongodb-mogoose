@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include('../partials/head'); %>
+  </head>
+  <body class='container'>
+
+    <header>
+      <%- include('../partials/header'); %>
+    </header>
+
+
+    <main>
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="div_main">
+            <h2 class='myh2'>Welcome To ITPT</h2>
+
+            <div class="">
+                <h4 class='std_cls'>Register Here to Join Us!</h4>
+                <div class="">
+                    <% if(message == 'success') {%>
+                      <div class="alert alert-success fade show" role="alert">
+                        Data Inserted Successfully.
+                        <script type="text/javascript">
+                          setTimeout(function(){
+                            window.location.href = '/'
+                          }, 3000);
+                        </script>
+                      </div>
+                      <!-- <script>alert('Data Inserted Successfully.')</script> -->
+                    <% } %>
+
+                    <% if(message == 'error') {%>
+                      <p>Something went wrong! Try Again!</p>
+                    <% } %>
+                </div>
+                <form method="POST" action="\register">
+                  <div class="form-group">
+                    <label for="">First Name</label>
+                    <input type="text" class="form-control" id="id_firstname" name='first_name' placeholder="Enter First Name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Last Name</label>
+                    <input type="text" class="form-control" id="id_lastname" name='last_name' placeholder="Enter Last Name">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Date of Birth</label>
+                    <input type="date" class="form-control" id="id_dob" placeholder="" name='birth_date'>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">Email ID </label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" name='emailid' aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="">City </label>
+                    <input type="text" class="form-control" id="id_city" name='city' placeholder="Enter City">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn_submit">Submit</button>
+                </form>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="col-sm-4">
+          <div class="div_small">
+            <h3>Welcome to Sidebar!</h3>
+          </div>
+        </div>
+      </div>
+    </main>
+
+
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>
+  </body>
+</html>

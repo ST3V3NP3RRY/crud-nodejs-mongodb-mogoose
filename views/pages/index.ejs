@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <%- include("../partials/head"); %>
+  </head>
+  <body class='container'>
+
+    <header>
+        <%- include('../partials/header'); %>
+    </header>
+
+    <main>
+      <div class="div_main">
+          <h2 class='myh2'>Welcome to the ITPT</h2>
+
+          <div>
+            <h4 class='std_cls'>Students Info - <%= tagline %></h4>
+
+            <!-- <p><%= std_data_static %></p> -->
+            <ul>
+              <% for(var i = 0; i < std_data_static.length; i++) { %>
+                  <li>
+                    <span>
+                      <%= std_data_static[i].first_name %> <%= std_data_static[i].last_name %> : <%= std_data_static[i].emailid %> , <%= std_data_static[i].birth_date %> , <%= std_data_static[i].address %>
+                    </span>
+                  </li>
+              <% } %>
+            </ul>
+
+            <ul>
+              <% for (var i = 0; i < std_data_static.length; i++) { %>
+                  
+                  <li><%= std_data_static[i].first_name %> : <%= std_data_static[i].last_name %> : <%= std_data_static[i].birth_date %> : <%= std_data_static[i].emailid %> :  <%= std_data_static[i].emailid %></li>
+              <% } %>
+            </ul>
+
+            <h4 class="std_cls">Students Info - <%= tagline %> </h4>
+            <% if(std_data_static.length >= 1) { %>
+              <table class="table table-striped">
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">FirstName</th>
+                  <th scope="col">LastName</th>
+                  <th scope="col">Date of Birth</th>
+                  <th scope="col">Email ID</th>
+                  <th scope="col">Address</th>
+                </tr>
+              </thead>
+              <% for(var i = 0; i < std_data_static.length; i++) { %>
+                <tr>
+                  <td>
+                    <%= std_data_static[i].first_name %>
+                  </td>
+                  <td>
+                    <%= std_data_static[i].last_name %>
+                  </td>
+                  <td>
+                    <%= std_data_static[i].birth_date %>
+                  </td>
+                  <td>
+                    <%= std_data_static[i].emailid %>
+                  </td>
+                  <td>
+                    <%= std_data_static[i].address %>
+                  </td>
+                </tr>
+              <% } %>
+            </table> 
+            <% } else { %> 
+              <p>No data available</p>
+            <% } %> 
+            <h4 class="std_cls">Students Info - MongoDB Data(Dynamic)</h4>
+            <% if(std_db_data.length >= 1) { %>
+              <table class="table table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">FirstName</th>
+                    <th scope="col">LastName</th>
+                    <th scope="col">Date of Birth</th>
+                    <th scope="col">Email ID</th>
+                    <th scope="col">Address</th>
+                  </tr>
+                </thead>
+                <% for(var i = 0; i < std_db_data.length; i++) { %>
+                  <tr>
+                    <td>
+                      <%= std_db_data[i].first_name %>
+                    </td>
+                    <td>
+                      <%= std_db_data[i].last_name %>
+                    </td>
+                    <td>
+                      <%= std_db_data[i].birth_date %>
+                    </td>
+                    <td>
+                      <%= std_db_data[i].emailid %>
+                    </td>
+                    <td>
+                      <%= std_db_data[i].city %>
+                    </td>
+                  </tr>
+                <% } %>
+              </table>
+            <% } else { %>
+              <p class='text-center'>No Data Available.</p>
+            <% } %>
+          </div>
+      </div>
+    </main>
+
+
+    <footer>
+      <%- include('../partials/footer'); %>
+    </footer>
+
+  </body>
+</html>
